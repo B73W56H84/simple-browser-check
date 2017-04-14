@@ -1,0 +1,53 @@
+<simple-browser-check>
+
+  <span> { browser } ( { version } ) </span>
+
+  <script>
+    var tag = this
+
+    var u = window.navigator.userAgent
+    var ua = u.toLowerCase()
+
+    var browser = 'something'
+    var version = '-'
+
+    // IE11
+    if ( ua.indexOf('trident/7') > -1 ) {
+      browser = 'Internet Explorer 11'
+      version = ua.match('rv:([0-9.]+)')[1]
+    }
+    // Edge
+    else if ( ua.indexOf('edge') > -1 ) {
+      browser = 'Microsoft Edge'
+      version = ua.match('edge/([0-9.]+)')[1]
+    }
+    // Google Chrome
+    else if ( (ua.indexOf('chrome') > -1) && (ua.indexOf('edge') == -1) && (ua.indexOf('opr') == -1) ) {
+      browser = 'Google Chrome'
+      version = ua.match('chrome/([0-9.]+)')[1]
+    }
+    // Firefox
+    else if ( ua.indexOf('firefox') > -1 ) {
+      browser = 'Mozilla Firefox'
+      version = ua.match('firefox/([0-9.]+)')[1]
+    }
+    // Safari
+    else if ( (ua.indexOf('safari') > -1) && (ua.indexOf('chrome') == -1) ) {
+      browser = 'Safari'
+      version = ua.match('version/([0-9.]+)')[1]
+    }
+    // Opera
+    else if ( ua.indexOf('opr') > -1 ){
+      browser = 'Opera'
+      version = ua.match('opr/([0-9.]+)')[1]
+    }
+
+    console.log( u );
+    console.log( browser );
+    console.log( version );
+
+    tag.browser = browser
+    tag.version = version
+  </script>
+
+</simple-browser-check>
